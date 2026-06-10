@@ -1,0 +1,39 @@
+
+======================================================================
+  SEC 10-K CLASSIFICATION PROJECT  —  STAGE 2: FEATURE ENGINEERING
+======================================================================
+
+════════════════════════════════════════════════════════════
+  CLASS DISTRIBUTION
+════════════════════════════════════════════════════════════
+  high      [███████████░░░░░░░░░░░░░░░░░░░░░░░]    10  ( 33.3%)
+  medium    [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░]     0  (  0.0%)
+  low       [██████████████████████░░░░░░░░░░░░]    20  ( 66.7%)
+
+  Total: 30
+
+  Recommended class_weight for models: {'high': np.float64(1.5), 'low': np.float64(0.75)}
+
+  Score statistics:
+  high_score    min=0.0  mean=10.17  median=1.0  max=29.5
+  low_score     min=0.0  mean=4.0  median=5.0  max=7.0
+  net_score     min=-7.0  mean=6.17  median=-4.0  max=29.5
+
+════════════════════════════════════════════════════════════
+  STAGE 2 SUMMARY
+════════════════════════════════════════════════════════════
+  Total filings          : 30
+  Labelled filings       : 30
+  Label mapping          : {np.str_('high'): np.int64(0), np.str_('low'): np.int64(1), np.str_('medium'): np.int64(2)}
+  TF-IDF vocabulary      : 706 tokens
+  TF-IDF matrix (train)  : (24, 706)
+  TF-IDF matrix (test)   : (6, 706)
+  combined_text avg words: 164
+
+  Output files:
+    stage2_output/sec_filings_stage2.pkl
+    stage2_output/X_train.pkl  stage2_output/X_test.pkl
+    stage2_output/y_train.pkl  stage2_output/y_test.pkl
+    stage2_output/tfidf_vectorizer.joblib
+    stage2_output/label_encoder.joblib
+════════════════════════════════════════════════════════════

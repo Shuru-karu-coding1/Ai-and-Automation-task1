@@ -1,0 +1,59 @@
+
+======================================================================
+  SEC 10-K CLASSIFICATION PROJECT  —  STAGE 3: MODEL TRAINING
+======================================================================
+
+═════════════════════════════════════════════════════════════════
+  STAGE 3 — TRAINING SUMMARY
+═════════════════════════════════════════════════════════════════
+
+  Model                 Train (s)   Test Acc  Train N  Test N
+  ──────────────────────────────────────────────────────────
+  XGBoost                  0.0548     1.0000       24       6
+  AdaBoost                 0.0044     1.0000       24       6
+  CatBoost                 1.3225     1.0000       24       6
+
+  Label mapping (encoded → class name):
+    0  →  high
+    1  →  low
+    2  →  medium
+
+  Prediction snapshots (first 6 test samples):
+    XGBoost             : ['high', 'low', 'low', 'low', 'high', 'low']
+    AdaBoost            : ['high', 'low', 'low', 'low', 'high', 'low']
+    CatBoost            : ['high', 'low', 'low', 'low', 'high', 'low']
+
+  Saved models:
+    stage3_output/xgboost_model.joblib
+    stage3_output/adaboost_model.joblib
+    stage3_output/catboost_model.joblib
+
+  Next step: run stage4_evaluation.py
+═════════════════════════════════════════════════════════════════
+
+
+════════════════════════════════════════════════════════════════════
+  HYPERPARAMETER REFERENCE
+════════════════════════════════════════════════════════════════════
+
+  MODEL 1 — XGBoost
+  ─────────────────
+  n_estimators=200, max_depth=6, learning_rate=0.1
+  subsample=0.8, colsample_bytree=0.8
+  eval_metric='mlogloss', objective='multi:softmax'
+  tree_method='hist'  [fast sparse-aware histogram splits]
+  NOTE: use_label_encoder REMOVED in XGBoost >= 2.0
+
+  MODEL 2 — AdaBoost
+  ──────────────────
+  base=DecisionTreeClassifier(max_depth=3)
+  n_estimators=200, learning_rate=0.5
+  NOTE: algorithm param REMOVED in sklearn >= 1.2 (SAMME only)
+  NOTE: requires dense input — X.toarray() applied before fit
+
+  MODEL 3 — CatBoost
+  ──────────────────
+  iterations=200, depth=6, learning_rate=0.1
+  loss_function='MultiClass', l2_leaf_reg=3.0
+  bootstrap_type='Bernoulli', subsample=0.8
+  NOTE: accepts sparse CSR via Pool(X_csr, label=y) natively
